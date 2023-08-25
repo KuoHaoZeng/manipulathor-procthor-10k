@@ -15,6 +15,7 @@ def load_dataset() -> prior.DatasetDict:
     data = {}
     for split, size in zip(("train", "val", "test"), (9995, 1000, 1000)):
         if not f"object_locations_with_feasible_agent_poses_{split}.jsonl.gz" in os.listdir("./"):
+            print("download from s3")
             url = f"https://prior-datasets.s3.us-east-2.amazonaws.com/manipulathor_procthor_10k/object_locations_with_feasible_agent_poses_{split}.jsonl.gz"
             urllib.request.urlretrieve(
                 url, "./object_locations_with_feasible_agent_poses_{}.jsonl.gz".format(split)
